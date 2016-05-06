@@ -62,4 +62,3 @@ target/
 .ipynb_checkpoints
 
 thesis/dataset/
-thesis_test/dataset_test/
