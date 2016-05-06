@@ -2,7 +2,7 @@ from sklearn import preprocessing
 from sklearn import utils
 import numpy as np
 import gzip, cPickle
-import thesis.utilitas as unp
+from utilitas import top_n_dataset
 
 class Salah(Exception):
     pass
@@ -72,7 +72,7 @@ class Generator:
     ekstraktor = Ekstraktor()
     # data_rank adalah array dari ranking data
     def top_n_dataset(self, data_rank,dataset, namafile):
-        data_hasil = unp.top_n_dataset(data_rank,dataset)
+        data_hasil = top_n_dataset(data_rank, dataset)
         np.savetxt(namafile + ".csv", data_hasil, delimiter=",")
         return data_hasil
 
