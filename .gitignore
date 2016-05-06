@@ -61,4 +61,5 @@ target/
 #Ipython Notebook
 .ipynb_checkpoints
 
-dataset/
+thesis/dataset/
+thesis_test/dataset_test/
