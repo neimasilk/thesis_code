@@ -13,7 +13,7 @@ from mlp import MLP
 from logistic_sgd import LogisticRegression, load_data
 
 def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
-             dataset='./dataset/GSE10072_dataset_rank27.pkl.gz', batch_size=3, n_hidden=35):
+             dataset='./dataset/GSE10072_dataset_rank27.pkl.gz', batch_size=6, n_hidden=35):
     """
     Demonstrate stochastic gradient descent optimization for a multilayer
     perceptron

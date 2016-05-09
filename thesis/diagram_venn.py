@@ -143,9 +143,9 @@ if __name__ == '__main__':
     ekstraktor = Ekstraktor()
     generator = Generator()
     array_rank = np.array(list(set_all))
-    train = 80.5
-    valid = 14.5
-    test = 5
+    train = 70.5
+    valid = 15.5
+    test = 14
     ekstraktor.norm_dataset("./dataset/GSE10072_dataset")
     dataset_gse = np.genfromtxt("./dataset/GSE10072_dataset_norm.csv", dtype=float, delimiter=",")
     generator.top_n_dataset(array_rank, dataset_gse, "./dataset/GSE10072_dataset_rank")
