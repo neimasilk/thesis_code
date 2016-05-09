@@ -1,6 +1,7 @@
 from matplotlib import pyplot as plt
 import numpy as np
 from matplotlib_venn import venn3, venn3_circles, venn2, venn2_circles
+from ekstrak_csv import Generator, Ekstraktor
 # plt.figure(figsize=(4,4))
 # v = venn3(subsets=(1, 1, 1, 1, 1, 1, 1), set_labels = ('A', 'B', 'C'))
 # v.get_patch_by_id('100').set_alpha(1.0)
@@ -119,19 +120,36 @@ set3_250 = set ([  328,12172,12253, 2540, 7303, 8189,13246,11120,  344,22230,  2
  22023,10601, 1960,  305,17862,  371,17577,12045, 3544,10236,10395, 3758,
    511,  538,11497,11658,21905, 8196, 9905,  720, 7603,21819])
 
-venn2([set1_250, set_top_250], ('P 1 H 10k 5k 1k 500 ', 'Literatur'))
-plt.title("Top 250 percobaan 1, dengan teknik di literatur 1")
-plt.show()
+def plot_venn():
+    venn2([set1_250, set_top_250], ('P 1 H 10k 5k 1k 500 ', 'Literatur'))
+    plt.title("Top 250 percobaan 1, dengan teknik di literatur 1")
+    plt.show()
 
-venn2([set2_250, set_top_250], ('P 2 H 7k 10k 5k 1k ', 'Literatur'))
-plt.title("Top 250 percobaan 2, dengan teknik di literatur 1")
-plt.show()
+    venn2([set2_250, set_top_250], ('P 2 H 7k 10k 5k 1k ', 'Literatur'))
+    plt.title("Top 250 percobaan 2, dengan teknik di literatur 1")
+    plt.show()
 
 
-venn2([set3_250, set_top_250], ('P 3 H 3k 2k 1k 100 ', 'Literatur'))
-plt.title("Top 250 percobaan 3, dengan teknik di literatur 1")
-plt.show()
+    venn2([set3_250, set_top_250], ('P 3 H 3k 2k 1k 100 ', 'Literatur'))
+    plt.title("Top 250 percobaan 3, dengan teknik di literatur 1")
+    plt.show()
 
-venn3([set1_250, set2_250, set3_250], ('P1 H=10k 5k 1k 500', 'P2 H=7k 10k 5k 1k', 'P3 H=3k 2k 1k 100'))
-plt.title("Perangkingan top 250")
-plt.show()
+    venn3([set1_250, set2_250, set3_250], ('P1 H=10k 5k 1k 500', 'P2 H=7k 10k 5k 1k', 'P3 H=3k 2k 1k 100'))
+    plt.title("Perangkingan top 250")
+    plt.show()
+
+if __name__ == '__main__':
+    set_all = set1_250 & set2_250 & set3_250
+    ekstraktor = Ekstraktor()
+    generator = Generator()
+    array_rank = np.array(list(set_all))
+    train = 80.5
+    valid = 14.5
+    test = 5
+    ekstraktor.norm_dataset("./dataset/GSE10072_dataset")
+    dataset_gse = np.genfromtxt("./dataset/GSE10072_dataset_norm.csv", dtype=float, delimiter=",")
+    generator.top_n_dataset(array_rank, dataset_gse, "./dataset/GSE10072_dataset_rank")
+    dataset_gse = ekstraktor.generate_dataset("./dataset/GSE10072_dataset_rank",
+                                               "./dataset/GSE10072_TARGET", train, valid, test, True)
+
+    print dataset_gse

@@ -58,7 +58,7 @@ def percobaan1_4l_1000e():
 
 def percobaan2_3l_1000e():
     finetune_lr=0.1
-    pretraining_epochs=1000
+    pretraining_epochs=500
     pretrain_lr=0.001
     k=1
     training_epochs=100
@@ -69,12 +69,12 @@ def percobaan2_3l_1000e():
 
     # percobaan 1 dengan layer 10k 5k 1k 500
     sys.stdout = Logger("./dataset/logout1000e_15k_8k_2k.txt")
-    hidden_sizes=[16000, 8000, 2000, 500]
+    hidden_sizes=[19000, 4000, 2000]
     model_hasil = test_DBN(finetune_lr, pretraining_epochs,
                   pretrain_lr, k, training_epochs,
                   dataset, batch_size,hidden_sizes, n_v,n_output)
 
-    ekstraktor.simpan_data("./dataset/model1000e_15k_8k_2k.pkl.gz", model_hasil)
+    ekstraktor.simpan_data("./dataset/model1000e_18k_10k_2k_500.pkl.gz", model_hasil)
     del model_hasil
     gc.collect()
     #
