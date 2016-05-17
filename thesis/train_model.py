@@ -11,7 +11,7 @@ from DBN import test_DBN
 
 ekstraktor = Ekstraktor()
 
-def percobaan1_4l_1000e():
+def percobaan1_4l_2000e():
     finetune_lr=0.1
     pretraining_epochs=2000
     pretrain_lr=0.01
@@ -52,7 +52,7 @@ def percobaan1_4l_1000e():
                 pretrain_lr, k, training_epochs,
                 dataset, batch_size,hidden_sizes, n_v,n_output)
 
-    ekstraktor.simpan_data("model2000e_3k_2k_1k_100.pkl.gz", model_hasil)
+    ekstraktor.simpan_data("./dataset/model2000e_3k_2k_1k_100.pkl.gz", model_hasil)
     del model_hasil
     gc.collect()
 
@@ -104,5 +104,5 @@ def percobaan2_3l_1000e():
 
 
 if __name__ == '__main__':
-    # percobaan1_4l_1000e()
-    percobaan2_3l_1000e()
+    percobaan1_4l_2000e()
+    # percobaan2_3l_1000e()
